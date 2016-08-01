@@ -1,0 +1,23 @@
+<%= content_tag :div, class: "container" do %>
+  <%= form_for(@prize, html: { class: "form-signin", multipart: true }) do |f| %>
+    <%= content_tag :div, class: "form-group" do %>
+      <%= f.label :name, class: "sr-only" %>
+      <%= f.text_field :name, class: "form-control", placeholder: "Prize", autocomplete: "off", autofocus:"true" %>
+      <%= f.label :desc, class: "sr-only" %>
+      <%= f.text_area :desc, class: "form-control", placeholder: "Description", autocomplete: "off" %>
+      <%= f.label :amount, class: "sr-only" %>
+      <%= f.text_field :amount, class: "form-control", placeholder: "Amount?", autocomplete: "off" %>
+    <% end %>
+    <%= content_tag :div, class: "form-group" do %>
+      <%= f.label "Upload a picture of the prize you offer", class: "control-label" %>
+      <%= f.file_field :photo %>
+    <% end %>
+    <%= content_tag :div, class: "form-group" do %>
+      <%= f.label :rule_id, "Establish a policy to pick up the winner" %>
+      <%= f.select(:rule_id, @rules, { include_blank: "Rules" }, class: "form-control") %>
+    <% end %>
+    <%= content_tag :div, class: "actions" do %>
+      <%= f.submit "Save the prize in stock!", class: "btn btn-lg btn-danger btn-block" %>
+    <% end %>
+  <% end %>
+<% end %>

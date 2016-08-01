@@ -1,0 +1,31 @@
+<h1><b>WINNERS!</b></h1>
+
+<table class="table table-bordered">
+  <% if @winners.any? %>
+  <thead>
+    <tr>
+      <th>Winner #</th>
+      <th>Subscriber</th>
+      <th>Prize</th>
+      <th>Won at?</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @winners.each do |winner| %>
+      <tr>
+        <td style="vertical-align:middle;"><%= winner.id %></td>
+        <td style="vertical-align:middle;"><%= link_to winner.subscriber.email, subscriber_path(winner.subscriber) %></td>
+        <td style="vertical-align:middle;"><%= link_to winner.prize.name, prize_path(winner.prize) %></td>
+        <td style="vertical-align:middle;"><%= winner.created_at.strftime('%a, %d %b %Y %H:%M:%S') %></td>
+      </tr>
+    <% end %>
+  </tbody>
+  <% else %>
+    <%= content_tag :div, class: 'panel panel-danger' do %>
+      <%= content_tag :div, class: 'panel-heading' do %>
+        <%= content_tag :h2, "No winners", class: 'panel-title', style: 'font-weight:bold;' %>
+      <% end %>
+    <% end %>
+  <% end %>
+</table>

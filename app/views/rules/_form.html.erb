@@ -1,0 +1,17 @@
+<%= content_tag :div, class: "container" do %>
+  <%= form_for(@rule, html: { class: "form-signin" }) do |f| %>
+    <%= content_tag :div, class: "form-group" do %>
+      <%= f.label :policy, class: "sr-only" %>
+      <%= f.select(:policy, @policy, { include_blank: "Select policy" }, class: "form-control", onchange: @jsconditions) %>
+    <% end %>
+    <%= content_tag :div, class: "form-group" do %>
+      <%= f.label :multipleof, class: "sr-only" %>
+      <%= f.text_field :multipleof, class: "form-control", autocomplete: 'off', placeholder: "Multiple Of?", style: 'display:none' %>
+      <%= f.label :specific, class: "sr-only" %>
+      <%= f.text_field :specific, class: "form-control", autocomplete: 'off', placeholder: "Specific ID", style: 'display:none' %>
+    <% end %>
+    <%= content_tag :div, class: "actions" do %>
+      <%= f.submit "Add this rule!", class: "btn btn-lg btn-danger btn-block" %>
+    <% end %>
+  <% end %>
+<% end %>

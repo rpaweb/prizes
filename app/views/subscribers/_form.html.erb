@@ -1,0 +1,11 @@
+<%= content_tag :div, class: "container" do %>
+  <%= form_for(@subscriber, html: { class: "form-signin" }) do |f| %>
+    <%= content_tag :div, class: "form-group" do %>
+      <%= f.label :email, class: "sr-only" %>
+      <%= f.text_field :email, class: "form-control", placeholder: "Email", autocomplete: "off", autofocus:"true" %>
+    <% end %>
+    <%= content_tag :div, class: "actions" do %>
+      <%= f.submit "Subscribe!", class: "btn btn-lg btn-danger btn-block" %>
+    <% end %>
+  <% end %>
+<% end %>

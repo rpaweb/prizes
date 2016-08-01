@@ -1,0 +1,42 @@
+<h1><b>RULES!</b></h1>
+
+<table class="table table-bordered">
+  <% if @rules.any? %>
+  <thead>
+    <tr>
+      <th>Policy</th>
+      <th>Description</th>
+      <th colspan="2">Configuration</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @rules.each do |rule| %>
+      <tr>
+        <td style="vertical-align:middle;"><%= rule.policy %></td>
+        <td style="vertical-align:middle;">
+          <% if rule.multipleof && rule.specific %>
+            <%= "Win Condition :: Multiple Of #{rule.multipleof} After #{rule.specific}" %>
+          <% elsif rule.multipleof %>
+            <%= "Win Condition :: Multiple Of #{rule.multipleof}" %>
+          <% else %>
+            <%= "Specific Winner :: Subscriber No. #{rule.specific}" %>
+          <% end %>
+        </td>
+        <td style="vertical-align:middle;"><%= link_to 'Edit', edit_rule_path(rule) %></td>
+        <td style="vertical-align:middle;"><%= link_to 'Delete', rule, method: :delete, data: { confirm: 'If you delete the rule, all of the prizes attached to this rule will be eliminated. Are you sure you want to continue?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+  <% else %>
+    <%= content_tag :div, class: 'panel panel-danger' do %>
+      <%= content_tag :div, class: 'panel-heading' do %>
+        <%= content_tag :h2, "No rules", class: 'panel-title', style: 'font-weight:bold;' %>
+      <% end %>
+    <% end %>
+  <% end %>
+</table>
+
+<br>
+
+<%= link_to (content_tag :span, "", class: "glyphicon glyphicon-plus"), new_rule_path, class:"btn btn-lg btn-danger", 'data-toggle':"tooltip", 'data-placement':"bottom", title:"Add a new rule!" %>

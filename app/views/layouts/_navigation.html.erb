@@ -1,0 +1,25 @@
+<div class="navbar-header">
+  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+    <span class="sr-only">Toggle navigation</span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+  </button>
+  <div class="brand-centered">
+    <a class="navbar-brand" href="<%= root_path %>">
+      <%= image_tag "store.png" %>
+    </a>
+  </div>
+</div>
+<div id="navbar" class="navbar-collapse collapse">
+  <ul class="nav navbar-nav navbar-right">
+    <% if current_user %>
+      <li class="<%= 'active' if current_page?(rules_path) %>"><%= link_to (content_tag :span, nil, class: "glyphicon glyphicon-cog"), rules_path, 'data-toggle':"tooltip", 'data-placement':"bottom", title:"Manage Rules" %></li>
+      <li class="<%= 'active' if current_page?(prizes_path) %>"><%= link_to (content_tag :span, nil, class: "glyphicon glyphicon-glass"), prizes_path, 'data-toggle':"tooltip", 'data-placement':"bottom", title:"Manage Prizes" %></li>
+      <li class="<%= 'active' if current_page?(winners_index_path) %>"><%= link_to (content_tag :span, nil, class: "glyphicon glyphicon-user"), winners_index_path, 'data-toggle':"tooltip", 'data-placement':"bottom", title:"Winners!" %></li>
+      <li><%= link_to (content_tag :span, nil, class: "glyphicon glyphicon-log-out"), destroy_user_session_path, method: :delete, 'data-toggle':"tooltip", 'data-placement':"bottom", title:"Logout" %></li>
+    <% else %>
+      <li><%= link_to (content_tag :span, nil, class: "glyphicon glyphicon-log-in"), new_user_session_path, 'data-toggle':"tooltip", 'data-placement':"bottom", title:"Login" %></li>
+    <% end %>
+  </ul>
+</div><!--/.nav-collapse -->

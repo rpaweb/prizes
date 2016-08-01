@@ -1,0 +1,6 @@
+<%= image_tag @prize.photo, size: "200" %>
+<h2><b><%= @prize.name %></b>&nbsp;<%= content_tag :kbd, "x#{@prize.amount}", 'data-toggle':"tooltip", 'data-placement':"right", title:"Amount in stock" %></h2>
+<p align="center"><b>Description:</b>&nbsp;<%= @prize.desc %></p>
+
+<%= link_to 'Edit', edit_prize_path(@prize) %> |
+<%= link_to 'Back', prizes_path %>
